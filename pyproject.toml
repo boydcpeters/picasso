@@ -14,7 +14,7 @@ maintainers = [{name = "Rafal Kowalewski", email = "rafalkowalewski998@gmail.com
 keywords = ["super-resolution", "DNA-PAINT", "microscopy"]
 description = "Collection of tools for painting super-resolution images"
 readme = "readme.rst"
-requires-python = ">=3.10,<3.15"
+requires-python = ">=3.12,<3.15"
 license = "MIT"
 license-files = ["LICENSE.txt", "LICENSES/*.txt"]
 classifiers = [
@@ -134,7 +134,6 @@ installer_gpu = [
     "cuda-core==1.2.1",
     "cuda-pathfinder==1.8.2"
 ]
-
 [project.urls]
 Homepage = "https://github.com/jungmannlab/picasso"
 Documentation = "https://picassosr.readthedocs.io/en/latest/index.html"
@@ -179,3 +178,20 @@ exclude = '''
   | dist
 )
 '''
+
+[tool.uv]
+conflicts = [
+    [
+        { extra = "cuda11" },
+        { extra = "cuda12" },
+        { extra = "cuda13" },
+    ],
+    [
+        { extra = "cuda11" },
+        { extra = "installer_gpu" },
+    ],
+    [
+        { extra = "cuda13" },
+        { extra = "installer_gpu" },
+    ],
+]
